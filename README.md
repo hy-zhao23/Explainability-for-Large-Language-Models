@@ -1,6 +1,6 @@
 # Explainability-for-Large-Language-Models: A Survey
 
-> 📖 Papers and resources related to the survey are organized by the structure of the paper.
+> 📖 Papers and resources related to our survey(["Explainability for Large Language Models: A Survey"](https://arxiv.org/abs/2309.01029)) are organized by the structure of the paper.
 
 > 📧 Please feel free to reach out if you spot any mistake. We also highly value suggestions to improve our work, please don't hesitate to ping us at: hz54@njit.edu.
 
@@ -65,6 +65,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 ## Training Paradigms of LLMs
 ### Traditional Fine-Tuning Paradigm
 > A language model is first pre-trained on a large corpus of unlabeled text data, and then fine-tuned on a set of labeled data from a specific downstream domain.
+
 1. Datasets
 
    [SST-2](https://huggingface.co/datasets/sst2), [MNLI](https://huggingface.co/datasets/multi_nli), [QQP](https://huggingface.co/Shobhank-iiitdwd/RoBERTa-large-QQP) , _etc_.
@@ -178,6 +179,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 
 ### Global Explanation
 > Global Explanation aims to provide a broad understanding of how the LLM work in the level of model components, such as neurons, hidden layers and larger modules.
+
 #### Probing-Based Explanation
 ##### Classifier-Based Probing
 1. **[Evaluating Layers of Representation in Neural Machine Translation on Part-of-Speech and Semantic Tagging Tasks](https://aclanthology.org/I17-1001)**. _Yonatan Belinkov et al_. ACL 2017. 
@@ -237,52 +239,54 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 5. **[Post hoc explanations of language models can improve language models](https://arxiv.org/abs/2305.11426)**. _Jiaqi Ma et al_. arXiv 2023.
 
 
-### Explanation for Prompting Paradigm 
+## Explanation for Prompting Paradigm
 > In prompting paradigm, LLMs have shown impressive reasoning abilities including few-shot learning, chain-of-thought prompting ability and phenomena like hallucination, which lack in conventional fine-tuning paradigm. Given these emerging properties, the explainability research is expected to investigate the underlying mechanisms. The explanation towards prompting paradigm can be categorized into two folds following model development stages: base model explanation and assistant model explanation.
-#### Base Model Explanation
-##### Explanations Benefit Model Learning
+
+### Base Model Explanation
+#### Explanations Benefit Model Learning
 1. **[Can language models learn from explanations in context?](https://arxiv.org/abs/2204.02329)**. _Andrew Lampinen et al_. EMNLP 2022.
 2. **[Chain-of-thought prompting elicits reasoning in large language models](https://arxiv.org/abs/2201.11903)**. _Jason Wei et al_. NIPS 2022.
 
-##### Explaining In-context Learning
+#### Explaining In-context Learning
 1. **[Towards understanding in-context learning with contrastive demonstrations and saliency maps](https://arxiv.org/abs/2307.05052)**. _Zongxia Li et al_. arXiv 2023.
 2. **[Larger language models do in-context learning differently](https://arxiv.org/abs/2303.03846)**. _Jerry Wei et al_. arXiv 2023.
 
-##### Explaining CoT Prompting
+#### Explaining CoT Prompting
 1. **[Analyzing chain-of-thought prompting in large language models via gradient-based feature attributions](https://arxiv.org/abs/2307.13339)**. _Skyler Wu et al_. ICML 2023.
 2. **[Text and patterns: For effective chain of thought, it takes two to tango](https://arxiv.org/abs/2209.07686)**. _Aman Madaan et al_. arXiv 2022.
 3. **[Towards understanding chain-of-thought prompting: An empirical study of what matters](https://arxiv.org/abs/2212.10001)**. _Boshi Wang et al_. ACL 2023.
 
-#### Assistant Model Explanation
-##### Explaining the Role of Fine-tuning
+### Assistant Model Explanation
+#### Explaining the Role of Fine-tuning
 1. **[Lima: Less is more for alignment](https://arxiv.org/abs/2305.11206)**. _Chunting Zhou et al_. arXiv 2023.
 2. **[The false promise of imitating proprietary llms](https://arxiv.org/abs/2305.15717)**. _Arnav Gudibande et al_. arXiv 2023.
 3. **[Llama-2: Open foundation and finetuned chat models](https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/)**. _Hugo Touvron et al_. 2023. 
 
-##### Explaining Hallucination and Uncertainty
+#### Explaining Hallucination and Uncertainty
 1. **[Look before you leap: An exploratory study of uncertainty measurement for large language models](https://arxiv.org/abs/2307.10236)**. _Yuheng Huang et al_. arXiv 2023.
 2. **[Can llms express their uncertainty? an empirical evaluation of confidence elicitation in llms](https://arxiv.org/abs/2306.13063)**. _Miao Xiong et al_. arXiv 2023.
 3. **[Shifting attention to relevance: Towards the uncertainty estimation of large language models](https://arxiv.org/abs/2307.01379)**. _Jinhao Duan et al_. arXiv 2023.
 
 
-#### Making Use of Explanations
-##### Improving LLMs
+### Making Use of Explanations
+#### Improving LLMs
 1. **[Orca: Progressive learning from complex explanation traces of gpt-4](https://arxiv.org/abs/2306.02707)**. _Subhabrata Mukherjee et al_. arXiv 2023.
 2. **[Did you read the instructions? rethinking the effectiveness of task definitions in instruction learning](https://arxiv.org/abs/2306.01150)**. _Fan Yin et al_. ACL 2023.
 
-##### Downstream Applications
-4. **[Learning transferable visual models from natural language supervision](https://arxiv.org/abs/2103.00020)**. _Alec Radford et al_. CVPR 2021.
-3. **[A Chatgpt aided explainable framework for zero-shot medical image diagnosis](https://arxiv.org/abs/2307.01981)**. _Jiaxiang Liu et al_. ICML 2023.
+#### Downstream Applications
+1. **[Learning transferable visual models from natural language supervision](https://arxiv.org/abs/2103.00020)**. _Alec Radford et al_. CVPR 2021.
+2. **[A Chatgpt aided explainable framework for zero-shot medical image diagnosis](https://arxiv.org/abs/2307.01981)**. _Jiaxiang Liu et al_. ICML 2023.
 
-### Explanation Evaluation
+## Explanation Evaluation
 > Explanation can be evaluated in multiple dimensions according to different metrics, such as plausibility, faithfulness, stability, etc. For each dimension, metrics can hardly align well with each other. Constructing standard metrics still remains an open challenge. In this part, we focus on two dimension: plausibility and faithfulness. And quantitative properties and metrics, which are usually more reliable than qualitative ones, are presented in detail. 
-#### Explanation Evaluations in Traditional Fine-tuning Paradigms
-##### Evaluating plausibility
+
+### Explanation Evaluations in Traditional Fine-tuning Paradigms
+#### Evaluating plausibility
 1. **[An Interpretability Evaluation Benchmark for Pre-trained Language Models](http://arxiv.org/abs/2207.13948)**. _Yaozong Shen et al_. arXiv 2022.  
 2. **[Hatexplain: A benchmark dataset for explainable hate speech detection](https://arxiv.org/abs/2012.10289)**. _Binny Mathew et al_. AAAI 2021.
 3. **[ERASER: A Benchmark to Evaluate Rationalized NLP Models](https://aclanthology.org/2020.acl-main.408)**. _Jay DeYoung et al_. ACL 2020.
 
-##### Evaluating Faithfulness
+#### Evaluating Faithfulness
 1. **[Axiomatic attribution for deep networks](http://proceedings.mlr.press/v70/sundararajan17a/sundararajan17a.pdf)**. _Mukund Sundararajan et al_. ICML 2017.
 2. **[The (Un)reliability of saliency methods](http://arxiv.org/abs/1711.00867)**. _Pieter-Jan Kindermans et al_. arXiv 2017.
 3. **[Rethinking Attention-Model Explainability through Faithfulness Violation Test](https://proceedings.mlr.press/v162/liu22i/liu22i.pdf)**. _Yibing Liu et al_. ICML 2022.
@@ -295,11 +299,11 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 10. **[Rev: information-theoretic evaluation of free-text rationales](https://arxiv.org/abs/2210.04982)**. _Hanjie Chen et al_. ACL 2023.
 
 
-#### Evaluation of Explanations in Prompting Paradigms
-##### Evaluating Plausibility
+### Evaluation of Explanations in Prompting Paradigms
+#### Evaluating Plausibility
 1. **[Do models explain themselves? counterfactual simulatability of natural language explanations](https://arxiv.org/abs/2307.08678)**. _Yanda Chen et al_. arXiv 2023.
 
-##### Evaluating Faithfulness
+#### Evaluating Faithfulness
 1. **[Language models don’t always say what they think: Unfaithful explanations in chain-of-thought prompting](https://arxiv.org/abs/2305.04388)**. _Miles Turpin et al_. arXiv 2023. 
 
 
