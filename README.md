@@ -101,6 +101,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 3. **[Pathologies of Neural Models Make Interpretations Difficult](https://aclanthology.org/D18-1407)**. _Shi Feng et al_. EMNLP 2018.
 4. **[Perturbed Masking: Parameter-free Probing for Analyzing and Interpreting BERT](https://aclanthology.org/2020.acl-main.383)**. _Zhiyong Wu et al_.  ACL 2020.
 5. **[Resisting Out-of-Distribution Data Problem in Perturbation of XAI](http://arxiv.org/abs/2107.14000)**. _Luyu Qiu et al_. arXiv 2021. 
+6. **[Towards a Deep and Unified Understanding of Deep Neural Models in NLP](http://proceedings.mlr.press/v97/guan19a.html)**. _Chaoyu Guan el al_. PMLR 2019.
 
 ##### Gradient-Based Explanation
 
@@ -119,6 +120,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 2. **[A Unified Approach to Interpreting Model Predictions](https://proceedings.neurips.cc/paper_files/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html)**. _Scott M Lundberg et al_. NIPS 2017. 
 3. **[BERT meets Shapley: Extending SHAP Explanations to Transformer-based Classifiers](https://aclanthology.org/2021.hackashop-1.3)**. _Enja Kokalj et al_. ACL 2021.
 4. **[Algorithms to estimate Shapley value feature attributions](https://www.nature.com/articles/s42256-023-00657-x)**. _Hugh Chen et al_. Nature Machine Intelligence 2023.
+5. **[A Causality Inspired Framework for Model Interpretation](https://dl.acm.org/doi/10.1145/3580305.3599240)**. _Chenwang Wu et al_. KDD 2023.
 
 ##### Decomposition-Based Methods
 
