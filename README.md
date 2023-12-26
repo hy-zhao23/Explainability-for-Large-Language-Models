@@ -7,52 +7,57 @@
 ## Table of Contents
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 
-- [Overview](#overview)
-- [Training Paradigms of LLMs](#training-paradigms-of-llms)
-  - [Traditional Fine-Tuning Paradigm](#traditional-fine-tuning-paradigm)
-  - [Prompting Paradigm](#prompting-paradigm)
-- [Explanation for Traditional Fine-Tuning Paradigm](#explanation-for-traditional-fine-tuning-paradigm)
-  - [Local Explanation](#local-explanation)
-    - [Feature Attribution-Based Explanation](#feature-attribution-based-explanation)
-      - [Perturbation-Based Explanation](#perturbation-based-explanation)
-      - [Gradient-Based Explanation](#gradient-based-explanation)
-      - [Surrogate Models](#surrogate-models)
-      - [Decomposition-Based Methods](#decomposition-based-methods)
-    - [Attention-Based Explanation](#attention-based-explanation)
-      - [Visualizations](#visualizations)
-      - [Function-Based methods](#function-based-methods)
-      - [Debate Over Attention](#debate-over-attention)
-    - [Example-Based Explanations](#example-based-explanations)
-      - [Adversarial Example](#adversarial-example)
-      - [Counterfactual Explanation](#counterfactual-explanation)
-    - [Natural Language Explanation](#natural-language-explanation)
-  - [Global Explanation](#global-explanation)
-    - [Probing-Based Explanation](#probing-based-explanation)
-      - [Classifier-Based Probing](#classifier-based-probing)
-      - [Parameter-Free Probing](#parameter-free-probing)
-    - [Neuron Activation Explanation](#neuron-activation-explanation)
-    - [Concept-Based Explanation](#concept-based-explanation)
-  - [Making Use of Explanations](#making-use-of-explanations)
-    - [Debugging Models](#debugging-models)
-    - [Improving Models](#improving-models)
-- [Explanation for Prompting Paradigm](#explanation-for-prompting-paradigm)
-  - [Base Model Explanation](#base-model-explanation)
-    - [Explanations Benefit Model Learning](#explanations-benefit-model-learning)
-    - [Explaining In-context Learning](#explaining-in-context-learning)
-    - [Explaining CoT Prompting](#explaining-cot-prompting)
-  - [Assistant Model Explanation](#assistant-model-explanation)
-    - [Explaining the Role of Fine-tuning](#explaining-the-role-of-fine-tuning)
-    - [Explaining Hallucination and Uncertainty](#explaining-hallucination-and-uncertainty)
-  - [Making Use of Explanations](#making-use-of-explanations-1)
-    - [Improving LLMs](#improving-llms)
-    - [Downstream Applications](#downstream-applications)
-- [Explanation Evaluation](#explanation-evaluation)
-  - [Explanation Evaluations in Traditional Fine-tuning Paradigms](#explanation-evaluations-in-traditional-fine-tuning-paradigms)
-    - [Evaluating plausibility](#evaluating-plausibility)
-    - [Evaluating Faithfulness](#evaluating-faithfulness)
-  - [Evaluation of Explanations in Prompting Paradigms](#evaluation-of-explanations-in-prompting-paradigms)
-    - [Evaluating Plausibility](#evaluating-plausibility)
-    - [Evaluating Faithfulness](#evaluating-faithfulness-1)
+- [Explainability-for-Large-Language-Models: A Survey](#explainability-for-large-language-models-a-survey)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Training Paradigms of LLMs](#training-paradigms-of-llms)
+    - [Traditional Fine-Tuning Paradigm](#traditional-fine-tuning-paradigm)
+    - [Prompting Paradigm](#prompting-paradigm)
+  - [Explanation for Traditional Fine-Tuning Paradigm](#explanation-for-traditional-fine-tuning-paradigm)
+    - [Local Explanation](#local-explanation)
+      - [Feature Attribution-Based Explanation](#feature-attribution-based-explanation)
+        - [Perturbation-Based Explanation](#perturbation-based-explanation)
+        - [Gradient-Based Explanation](#gradient-based-explanation)
+        - [Surrogate Models](#surrogate-models)
+        - [Decomposition-Based Methods](#decomposition-based-methods)
+      - [Attention-Based Explanation](#attention-based-explanation)
+        - [Visualizations](#visualizations)
+        - [Function-Based methods](#function-based-methods)
+        - [Debate Over Attention](#debate-over-attention)
+      - [Example-Based Explanations](#example-based-explanations)
+        - [Adversarial Example](#adversarial-example)
+        - [Counterfactual Explanation](#counterfactual-explanation)
+        - [Data Influence](#data-influence)
+      - [Natural Language Explanation](#natural-language-explanation)
+    - [Global Explanation](#global-explanation)
+      - [Probing-Based Explanation](#probing-based-explanation)
+        - [Classifier-Based Probing](#classifier-based-probing)
+        - [Parameter-Free Probing](#parameter-free-probing)
+      - [Neuron Activation Explanation](#neuron-activation-explanation)
+      - [Concept-Based Explanation](#concept-based-explanation)
+      - [Mechanistic Interpretability](#mechanistic-interpretability)
+    - [Making Use of Explanations](#making-use-of-explanations)
+      - [Debugging Models](#debugging-models)
+      - [Improving Models](#improving-models)
+  - [Explanation for Prompting Paradigm](#explanation-for-prompting-paradigm)
+    - [Base Model Explanation](#base-model-explanation)
+      - [Explaining In-context Learning](#explaining-in-context-learning)
+      - [Explaining CoT Prompting](#explaining-cot-prompting)
+      - [Representation Engineering](#representation-engineering)
+    - [Assistant Model Explanation](#assistant-model-explanation)
+      - [Explaining the Role of Fine-tuning](#explaining-the-role-of-fine-tuning)
+      - [Explaining Hallucination](#explaining-hallucination)
+      - [Uncertainty Quantification](#uncertainty-quantification)
+    - [Making Use of Explanations](#making-use-of-explanations-1)
+      - [Improving LLMs](#improving-llms)
+      - [Downstream Applications](#downstream-applications)
+  - [Explanation Evaluation](#explanation-evaluation)
+    - [Explanation Evaluations in Traditional Fine-tuning Paradigms](#explanation-evaluations-in-traditional-fine-tuning-paradigms)
+      - [Evaluating plausibility](#evaluating-plausibility)
+      - [Evaluating Faithfulness](#evaluating-faithfulness)
+    - [Evaluation of Explanations in Prompting Paradigms](#evaluation-of-explanations-in-prompting-paradigms)
+      - [Evaluating Plausibility](#evaluating-plausibility-1)
+      - [Evaluating Faithfulness](#evaluating-faithfulness-1)
 
 <!-- markdown-toc end -->
 
@@ -174,6 +179,16 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 3. **[Explaining nlp models via minimal contrastive editing (mice)](https://arxiv.org/abs/2012.13985)**. _Alexis Ross et al_, ACL 2021.
 4. **[Crest: A joint framework for rationalization and counterfactual text generation](https://arxiv.org/abs/2305.17075)**. _Marcos Treviso et al_.  ACL 2023.
 
+##### Data Influence
+1. **[Representer point selection for explaining deep neural networks]()**. *Chih-Kuan Yeh et al*. NIPS 2018.
+2. **[Understanding black-box predictions via influence functions](https://proceedings.mlr.press/v70/koh17a.html)**. *Pang Wei Koh et al*. PMLR 2017.
+3. **[Data shapley: Equitable valuation of data for machine learning](https://proceedings.mlr.press/v97/ghorbani19c.html)**. *Amirata Ghorbani et al*. PMLR 2019.
+4. **[Data cleansing for models trained with sgd](https://papers.nips.cc/paper/8674-data-cleansing-for-models-trained-with-sgd)**. *Satoshi Hara et al*. NIPS 2019.
+5. **[Estimating training data influence by tracing gradient descent](https://papers.nips.cc/paper/2020/file/e6385d39ec9394f2f3a354d9d2b88eec-Paper.pdf)**. *Garima Pruthi et al*. NIPS 2020.
+6. **[Fastif: Scalable influence functions for efficient model interpretation and debugging](https://arxiv.org/abs/2012.15781)**. *Han Guo*. ACL 2020.
+7. **[Studying large language model generalization with influence functions](https://arxiv.org/abs/2308.03296)**. *Roger Grosse et al*. arXiv 2023.
+
+
 #### Natural Language Explanation
 1. **[Explain Yourself! Leveraging Language Models for Commonsense Reasoning](https://aclanthology.org/P19-1487)**. _Nazneen Fatema Rajani et al_. ACL 2019. 
 2. **[Local Interpretations for Explainable Natural Language Processing: A Survey](http://arxiv.org/abs/2103.11072)**. _Siwen Luo et al_.  arXiv 2022. 
@@ -199,7 +214,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 13. **[Designing and Interpreting Probes with Control Tasks](https://aclanthology.org/D19-1275)**. _John Hewitt et al_. EMNLP 2019.
 14. **[Classifier Probes May Just Learn from Linear Context Features](https://aclanthology.org/2020.coling-main.450)**. _Jenny Kunz et al_. ACL 2020.
 15. **[Probing for Referential Information in Language Models](https://aclanthology.org/2020.acl-main.384)**. _Ionut-Teodor Sorodoc et al_. ACL 2020.
-16. **[Structured Self-Attention Weights Encode Semantics in Sentiment Analysis](https://aclanthology.org/2020. blackboxnlp-1.24)**. _Zhengxuan Wu et al_. ACL 2020.
+16. **[Structured Self-Attention Weights Encode Semantics in Sentiment Analysis](https://aclanthology.org/2020.blackboxnlp-1.24)**. _Zhengxuan Wu et al_. ACL 2020.
 17. **[Probing BERT in Hyperbolic Spaces](http://arxiv.org/abs/2104.03869)**. _Boli Chen et al_. ICLR 2021.
 18. **[Do Syntactic Probes Probe Syntax? Experiments with Jabberwocky Probing](http://arxiv.org/abs/2106.02559)**. _Rowan Hall Maudslay et al_. arXiv 2021.
 19. **[Exploring the Role of BERT Token Representations to Explain Sentence Probing Results](http://arxiv.org/abs/2104.01477)**. _Hosein Mohebbi et al_. EMNLP 2021.
@@ -227,6 +242,22 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 1. **[Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV)](http://arxiv.org/abs/1711.11279)**. _Been Kim et al_. ICML 2018.
 2. **[Compositional Explanations of Neurons](http://arxiv.org/abs/2006.14032)**. _Jesse Mu et al_. NIPS 2020.
 
+#### Mechanistic Interpretability
+1. **[Decomposing language models into understandable components?](https://www.anthropic.com/index/decomposing-language-models-into-understandable-components)**. *Anthropic*. 2023.
+2. **[Towards monosemanticity: Decomposing language models with dictionary learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html)**. *Trenton Bricken et al*. 2023.
+3. **[Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/)**. *Chris Olah et al*. 2020.
+4. **[Branch Specialization](https://distill.pub/2020/circuits/branch-specialization/)**. *Chelsea Voss et al*. 2021.
+5. **[Weight Banding](https://distill.pub/2020/circuits/weight-banding/)**. Michael Petrov et al. 2021.
+6. **[Naturally Occurring Equivariance in Neural Networks](https://distill.pub/2020/circuits/equivariance/)**. *Catherine Olsson et al*. 2020.
+7. **[A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html)**. *Catherine Olsson et al*. 2021.
+8. **[In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html)**. *Catherine Olsson et al*. 2022.
+9. **[Transformer feed-forward layers are key-value memories](https://arxiv.org/abs/2012.14913)**. *Mor Geva et al*. arXiv 2020.
+10. **[Locating and editing factual associations in gpt](https://arxiv.org/abs/2202.05262)**. *Kevin Meng et al*. NIPS 2022.
+11. **[Transformer feed-forward layers build predictions by promoting concepts in the vocabulary space](https://arxiv.org/abs/2203.14680)**. *Mor Geva et al*. arXiv 2022.
+12. **[Residual networks behave like ensembles of relatively shallow networks](https://arxiv.org/abs/1605.06431)**. *Andreas Veit et al*. NIPS 2016.
+13. **[The hydra effect: Emergent self-repair in language model computations](https://arxiv.org/abs/2307.15771)**. *Tom Lieberum et al*. arXiv 2023.
+14. **[Does circuit analysis interpretability scale? evidence from multiple choice capabilities in chinchilla](https://arxiv.org/abs/2307.09458)**. *Tom Lieberum et al*. arXiv 2023.
+
 ### Making Use of Explanations
 #### Debugging Models
 1. **[Towards interpreting and mitigating shortcut learning behavior of nlu models](https://arxiv.org/abs/2103.06922)**. _Mengnan Du et al_. NAACL 2021.
@@ -237,7 +268,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 1. **[Er-test: Evaluating explanation regularization methods for language models](https://arxiv.org/abs/2205.12542)**. _Brihi Joshi et al_. EMNLP 2022.
 2. **[Supervising model attention with human explanations for robust natural language inference](https://arxiv.org/abs/2104.08142)**. _Joe Stacey et al_. AAAI 2022.
 3. **[Unirex: A unified learning framework for language model rationale extraction](https://arxiv.org/abs/2112.08802)**. _Aaron Chan et al_. ICML 2022.
-4. **[Xmd: An end-to-end framework for interactive explanation-based debugging of nlp models](https://arxiv.org/abs/2210.16978)**. _Dong-Ho Lee et al_. 2022.
+4. **[Xmd: An end-to-end framework for interactive explanation-based debugging of nlp models](https://arxiv.org/abs/2210.16978)**. _Dong-Ho Lee et al_. arXiv 2022.
 5. **[Post hoc explanations of language models can improve language models](https://arxiv.org/abs/2305.11426)**. _Jiaqi Ma et al_. arXiv 2023.
 
 
@@ -245,9 +276,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 > In prompting paradigm, LLMs have shown impressive reasoning abilities including few-shot learning, chain-of-thought prompting ability and phenomena like hallucination, which lack in conventional fine-tuning paradigm. Given these emerging properties, the explainability research is expected to investigate the underlying mechanisms. The explanation towards prompting paradigm can be categorized into two folds following model development stages: base model explanation and assistant model explanation.
 
 ### Base Model Explanation
-#### Explanations Benefit Model Learning
-1. **[Can language models learn from explanations in context?](https://arxiv.org/abs/2204.02329)**. _Andrew Lampinen et al_. EMNLP 2022.
-2. **[Chain-of-thought prompting elicits reasoning in large language models](https://arxiv.org/abs/2201.11903)**. _Jason Wei et al_. NIPS 2022.
+1. **[Chain-of-thought prompting elicits reasoning in large language models](https://arxiv.org/abs/2201.11903)**. *Jason Wei et al*. NIPS 2022.
 
 #### Explaining In-context Learning
 1. **[Towards understanding in-context learning with contrastive demonstrations and saliency maps](https://arxiv.org/abs/2307.05052)**. _Zongxia Li et al_. arXiv 2023.
@@ -258,22 +287,47 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 2. **[Text and patterns: For effective chain of thought, it takes two to tango](https://arxiv.org/abs/2209.07686)**. _Aman Madaan et al_. arXiv 2022.
 3. **[Towards understanding chain-of-thought prompting: An empirical study of what matters](https://arxiv.org/abs/2212.10001)**. _Boshi Wang et al_. ACL 2023.
 
+#### Representation Engineering
+1. **[Representation engineering: A top-down approach to ai transparency](https://arxiv.org/abs/2310.06824)**. *Andy Zou et al*. arXiv 2023.
+2. **[The geometry of truth: Emergent linear structure in large language model representations of true/false datasets](https://arxiv.org/abs/2310.06824)**. *Samuel Marks et al*. arXiv 2023.
+3. **[Language models represent space and time](https://arxiv.org/abs/2310.00492)**. *Wes Gurnee et al*. arXiv 2023.
+
 ### Assistant Model Explanation
 #### Explaining the Role of Fine-tuning
 1. **[Lima: Less is more for alignment](https://arxiv.org/abs/2305.11206)**. _Chunting Zhou et al_. arXiv 2023.
 2. **[The false promise of imitating proprietary llms](https://arxiv.org/abs/2305.15717)**. _Arnav Gudibande et al_. arXiv 2023.
 3. **[Llama-2: Open foundation and finetuned chat models](https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/)**. _Hugo Touvron et al_. 2023. 
+4. **[From language modeling to instruction following: Understanding the behavior shift in llms after instruction tuning](https://arxiv.org/abs/2310.00492)**. *Xuansheng Wu et al*. arXiv 2023.
 
-#### Explaining Hallucination and Uncertainty
+#### Explaining Hallucination
+1. **[Siren’s Song in the AI Ocean: A Survey on Hallucination in Large Language Models](http://arxiv.org/abs/2309.01219)**. *Yue Zhang et al*. arXiv 2023.
+2. **[Look before you leap: An exploratory study of uncertainty measurement for large language models](https://arxiv.org/abs/2307.10236)**. *Yuheng Huang et al*. arXiv 2023.
+3. **[On the Origin of Hallucinations in Conversational Models: Is it the Datasets or the Models?](Nouha Dziri)**. *Nouha Dziri et al*. ACL 2022.
+4. **[Large Language Models Struggle to Learn Long-Tail Knowledge](http://arxiv.org/abs/2211.08411)**. *Nikhil Kandpal et al*. arXiv 2023.
+5. **[Scaling Laws and Interpretability of Learning from Repeated Data](http://arxiv.org/abs/2205.10487)**. *Danny Hernandez et al*. arXiv 2022.
+6. **[Sources of Hallucination by Large Language Models on Inference Tasks](http://arxiv.org/abs/2305.14552)**. *Nick McKenna et al*. arXiv 2023.
+7. **[Do PLMs Know and Understand Ontological Knowledge?](https://aclanthology.org/2023.acl-long.173)**. *Weiqi Wu et al*. ACL 2023.
+8. **[The Reversal Curse: LLMs trained on "A is B" fail to learn "B is A"](http://arxiv.org/abs/2309.12288)**. *Lukas Berglund et al*. arXiv 2023.
+9. **[Investigating the Factual Knowledge Boundary of Large Language Models with Retrieval Augmentation](http://arxiv.org/abs/2307.11019)**. *Ruiyang Ren et al*. arXiv 2023.
+10. **[Impact of Co-occurrence on Factual Knowledge of Large Language Models](http://arxiv.org/abs/2310.08256)**. *Cheongwoong Kang et al*. arXiv 2023.
+11. **[Simple synthetic data reduces sycophancy in large language models](http://arxiv.org/abs/2308.03958)**. *Jerry Wei et al*. arXiv 2023. 
+12. **[PaLM: Scaling Language Modeling with Pathways](http://arxiv.org/abs/2204.02311)**, *Aakanksha Chowdhery et al*. arXiv 2022.
+13. **[When Do Pre-Training Biases Propagate to Downstream Tasks? A Case Study in Text Summarization](https://aclanthology.org/2023.eacl-main.234)**. *Faisal Ladhak et al*. ACL 2023.
+
+
+
+#### Uncertainty Quantification
 1. **[Look before you leap: An exploratory study of uncertainty measurement for large language models](https://arxiv.org/abs/2307.10236)**. _Yuheng Huang et al_. arXiv 2023.
-2. **[Can llms express their uncertainty? an empirical evaluation of confidence elicitation in llms](https://arxiv.org/abs/2306.13063)**. _Miao Xiong et al_. arXiv 2023.
-3. **[Shifting attention to relevance: Towards the uncertainty estimation of large language models](https://arxiv.org/abs/2307.01379)**. _Jinhao Duan et al_. arXiv 2023.
+2. **[Shifting attention to relevance: Towards the uncertainty estimation of large language models](https://arxiv.org/abs/2307.01379)**. _Jinhao Duan et al_. arXiv 2023.
 
 
 ### Making Use of Explanations
 #### Improving LLMs
 1. **[Orca: Progressive learning from complex explanation traces of gpt-4](https://arxiv.org/abs/2306.02707)**. _Subhabrata Mukherjee et al_. arXiv 2023.
 2. **[Did you read the instructions? rethinking the effectiveness of task definitions in instruction learning](https://arxiv.org/abs/2306.01150)**. _Fan Yin et al_. ACL 2023.
+3. **[Show your work: Scratchpads for intermediate computation with language models](https://arxiv.org/abs/2112.00114)**. *Maxwell Nye et al*. arXiv 2021.
+4. **[The unreliability of explanations in few-shot prompting for textual reasoning](https://arxiv.org/abs/2205.03401)**. *Xi Ye et al*. NIPS 2022.
+5. **[Explanation selection using unlabeled data for chain-of-thought prompting](https://arxiv.org/abs/2302.04813)**. *Xi Ye et al*. arXiv 2023.
 
 #### Downstream Applications
 1. **[Learning transferable visual models from natural language supervision](https://arxiv.org/abs/2103.00020)**. _Alec Radford et al_. CVPR 2021.
@@ -307,6 +361,8 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 
 #### Evaluating Faithfulness
 1. **[Language models don’t always say what they think: Unfaithful explanations in chain-of-thought prompting](https://arxiv.org/abs/2305.04388)**. _Miles Turpin et al_. arXiv 2023. 
+2. **[Measuring faithfulness in chain-ofthought reasoning](https://arxiv.org/abs/2307.13702)**. *Tamera Lanham et al*. arXiv 2023.
+3. **[Question decomposition improves the faithfulness of model-generated reasoning](https://arxiv.org/abs/2307.11768)**. *Ansh Radhakrishnan et al*. arXiv 2023.
 
 
 -----
