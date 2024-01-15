@@ -288,7 +288,7 @@ We categorize LLM explainability into two major paradigms. Based on this categor
 3. **[Towards understanding chain-of-thought prompting: An empirical study of what matters](https://arxiv.org/abs/2212.10001)**. _Boshi Wang et al_. ACL 2023.
 
 #### Representation Engineering
-1. **[Representation engineering: A top-down approach to ai transparency](https://arxiv.org/abs/2310.06824)**. *Andy Zou et al*. arXiv 2023.
+1. **[Representation engineering: A top-down approach to ai transparency](https://arxiv.org/abs/2310.01405)**. *Andy Zou et al*. arXiv 2023.
 2. **[The geometry of truth: Emergent linear structure in large language model representations of true/false datasets](https://arxiv.org/abs/2310.06824)**. *Samuel Marks et al*. arXiv 2023.
 3. **[Language models represent space and time](https://arxiv.org/abs/2310.00492)**. *Wes Gurnee et al*. arXiv 2023.
 
